@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js"
+          integrity="sha512-y1qD3hz/IAf8W4+/UMLZ+CN6LIoUGi7srWJ3r1R17Hid8x0yXe+1B5ZelkaL1Mjzedzu0Cg3HBvDG02SAgSzBw=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+      </script>
+      <script src="app.js"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
+      <link rel="stylesheet" type="text/css" href="Style.css">
+      <title>DelEazzy</title>
+      <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+      <script type="text/javascript" src="Scripts.js"></script>
+  </head>
+  <body onload="background('#d8dea7')">
+  <div ng-app="myApp">
+      <div id="a" >
+      <nav>
+          <ul>
+              <li><a href="#top"  onclick="play()"><b><em><i class="fa fa-home fa-2x"></i>DelEazzy</em></b></a></li>
+              <audio id="audio" src="DelEazzy Company Audio ft. Room 808 (Official).m4a" ></audio>
+                <li id="so"><a href="#Search"><b>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Search Orders</b></a></li>
+                <li id="fo"><a href="#Filter"><b>Filter Orders</b></a></li>
+                <li id="ds"><a href="#Top_Delivery_Time"><b>Top Delivery Time</b></a></li>
+                <li id="ab"><a href="#about"><b>About</b></a></li>  
+          </ul>
+        </nav>
+      <img src="Images/Delivery Boy.png" alt="Delivery Boy" id="db"/>
+      </div>
+      <div id="d1">
+          <h1>Delivery Made Easy</h1>
+          <h2>Door to Door only DelEazzy !</h2>
+          <button type="button" onclick="window.location.href='https://play.google.com/store/apps';" class="appbtn">Get the App</button>
+          <button type="button" onclick="getlocation()" class="appbtn">Do we deliver at your location ?</button>        
+      </div>
+      <img id="wave"/>
+      <ng-view></ng-view>
+      <div id="reg">
+          <h2 style="color: #053e1b;margin-top: 50px;">New here ?</h2>
+          <p style="margin-bottom: 20px; margin-top:0px;"><b>Please fill in this form to create an account.</b></p>
+
+          <form id="signup">
+            <div class="container">    
+              <label> First Name: </label>   
+              <input id="fn" type="text" name="firstname" onblur="validateName()" placeholder= "Firstname" required/>   
+
+              <label> Last Name: </label>   
+              <input id="ln" type="text" name="lastname" onblur="validateName()" placeholder="Lastname" required/>   
+              <div id="errdiv" style="margin-left:-10px;">
+                <span id="error"></span>
+              </div>
+            
+              <label> Birthday: </label>   
+              <input id="bd" type="text" name="Birthday" placeholder="Birthday" autocomplete="off" required/>  
+
+              <div>  
+                <label>Occupation: </label>
+                <select>
+                  <option value="Student">Student</option>  
+                  <option value="Working Professional">Working Professional</option>  
+                  <option value="Homemaker">Homemaker</option>  
+                </select>  
+              </div>  
+
+              <div><br> 
+                <label>Gender :</label>
+                  <input type="radio" value="Male" name="gender" checked > Male   
+                  <input type="radio" value="Female" name="gender"> Female   
+                  <input type="radio" value="Other" name="gender"> Other  
+              </div><br> 
+
+              <label>Phone :</label>  
+              <input id="cd" type="text" name="country code" placeholder="Country Code" onblur="validateCode()" size="2" required/>
+              <div id="errdiv" style="margin-left:-10px;">
+                <span id="error1"></span>
+              </div> 
+              <input id="ph" type="tel" name="phone" onblur="validatePhone()" placeholder="Phone no." size="10" required/>
+              <div id="errdiv" style="margin-left:-10px;">
+                <span id="error2"></span>
+              </div> 
+
+              <label>Current Address :  </label>
+              <textarea cols="80" rows="5" placeholder="Current Address" value="address" id="ca" required></textarea>  
+              
+              <label for="email"><b>Email</b></label>  
+              <input type="email" placeholder="Enter Email" name="email" id="mail" onblur="validateEmail()" required>  
+              <div id="errdiv" style="margin-left:-10px;">
+                <span id="error3"></span>
+              </div>
+              
+              <label for="psw"><b>Password</b></label>  
+              <input type="password" placeholder="Enter Password" name="psw" id="pass" onblur="validatePassword()" required>
+              <input type="hidden" name="hide" id="hide" />  
+              
+              <label for="psw-repeat"><b>Confirm Password</b></label>  
+              <input type="password" placeholder="Confirm Password" name="psw-repeat" id="passr" onblur="validatePassword()" required>  
+              <div id="errdiv" style="margin-left:-10px;">
+                <span id="error4"></span>
+              </div>
+
+              <button type="submit" onclick="storeValues()" class="registerbtn">Sign Up</button> 
+          </form>
+
+      </div>
+      <div id="about" >
+          <h2 style="color: #053e1b;">About Us</h2>
+          <p id="abouttext">
+          DelEazzy aims to deliver packages within city to get your last-minute essentials delivered through a network of delivery partners.
+          With the rise of traffic in cities, our expert partners will Pick up | Buy | Send | Anything you need, get delivered Get updates at every stage from pick up to drop off, from the comfort of your home.
+          </p>
+          <div class="cards">
+              <div class="card" style="float: left;">
+                  <img src="./Images/target.png" alt="Avatar" style="width: 240px;height: 240px;">
+                  <div class="container1">
+                      <h4><b>Our Goals</b></h4>
+                    <ol style="padding:0px;">
+                      <li>Fast delivery</li>
+                      <li>Be cost-effective</li>
+                      <li>Reach more People</li>
+                    </ol>
+                  </div>
+              </div>
+              <div class="card1" style="float: right;">
+                  <img src="./Images/contact.png" alt="Avatar" usemap="#contact_us" style="width: 240px;height: 240px;">
+                  <map name="contact_us">
+                    <area target="_self" alt="SMS" title="SMS" href="sms:+9120129020" coords="55,183,30" shape="circle">
+                    <area target="_self" alt="Call" title="Call" href="tel:+91120129020" coords="117,184,30" shape="circle">
+                    <area target="_self" alt="E-Mail" title="E-Mail" href="mailto:deleazzy@gmail.com" coords="179,186,30" shape="circle">
+                  </map>
+                  <div class="container1">
+                  <h4><b>Contact Us</b></h4>
+                  <ol style="padding:0px;">
+                      <li>Email: <a href="mailto:deleazzy@gmail.com">deleazzy@gmail.com</a></li>
+                      <li>Phone: <a href="tel:+91120129020>">+91 1201290201</a></li>
+                      <li>Instagram: <a href="https://www.instagram.com">@deleazzy</a></li>
+                    </ol>
+                  </div>
+              </div>
+              <div class="card1" style="float: right;">
+                  <img src="./Images/location.png" alt="Avatar" style="width: 240px; height: 240px; padding-left: 40px;">
+                  <div class="container1">
+                  <h4><b>Available Locations</b></h4>
+                  <ol style="padding:0px;">
+                      <li>Bangalore</li>
+                      <li>Delhi</li>
+                      <li>Mumbai</li>
+                    </ol>
+                  </div>
+              </div>
+              
+            </div>
+      </div>
+      <br>  
+      <video width="1280" height="720" controls>
+        <source src="diwali-chores-on-your-mind-geniedekhlega.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video> 
+      <footer>
+        <canvas id="logocanvas" width="170" height="100" >
+          Your browser does not support the HTML canvas tag.
+          </canvas>
+      </footer>  
+
+      <script type="text/javascript">
+        var c = document.getElementById("logocanvas");
+        var ctx = c.getContext("2d");
+        ctx.font = "20px Roboto Mono, monospace";
+        var gradient = ctx.createLinearGradient(0, 0, 150, 100);
+        gradient.addColorStop(0, "rgb(5, 62, 27)");
+        gradient.addColorStop(1, "rgb(216, 222, 167)");
+        ctx.fillStyle = gradient;
+        ctx.fillText("©DelEazzy💨",10,50);
+        
+        var maxBirthdayDate = new Date();
+        maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 18 );
+        maxBirthdayDate.setMonth(maxBirthdayDate.getMonth() ,maxBirthdayDate.getDate());
+        $( "#bd" ).datepicker({
+          dateFormat: 'dd.mm.yy',
+          changeMonth: true,
+          changeYear: true,
+          maxDate: maxBirthdayDate,
+          yearRange: '-125:'+maxBirthdayDate.getFullYear(),
+        });
+
+        const element = document.getElementById("fn");
+        element.addEventListener("keypress", function (e) 
+        {
+            preventnum(e);
+        });
+
+        const element1 = document.getElementById("ln");
+        element1.addEventListener("keypress", function (e) 
+        {
+            preventnum(e);
+        });
+
+        function preventnum(e) {
+          if (!isNaN(e.key)) {
+              e.preventDefault();
+          }
+        }
+
+        const element2 = document.getElementById("ph");
+        element2.addEventListener("keypress", function (e) 
+        {
+           preventalpha(e);
+        });
+
+        const element3 = document.getElementById("cd");
+        element3.addEventListener("keypress", function (e) 
+        {
+           preventalpha(e);
+        });
+
+        function preventalpha(e) {
+          if (isNaN(e.key)) {
+              e.preventDefault();
+          }
+        }
+      </script>
+  </div>
+  </body>
+  </html>
